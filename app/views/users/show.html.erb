@@ -1,2 +1,12 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.email %>'s Items</h1>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <th>Item</th>
+    <th>Time Remaining</th>
+    <th></th>
+  </thead>
+  <%= render @items %>
+</table>
+
+<%= render "items/form" %>
