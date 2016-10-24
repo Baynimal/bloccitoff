@@ -1,5 +1,9 @@
-<tr>
+<tr id="item-<%= item.id %>">
   <td><%= item.name %></td>
-  <td></td>
-  <td></td>
+  <td><%= distance_of_time_in_words(Time.now, item.created_at + 7.days ) %> </td>
+  <td>
+    <% if @user == current_user %>
+      <%= link_to "", [@user, item], method: :delete, class: 'glyphicon glyphicon-ok', remote: true %>
+    <% end %>
+  </td>
 </tr>

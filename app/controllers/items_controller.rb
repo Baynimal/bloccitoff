@@ -4,14 +4,25 @@ class ItemsController < ApplicationController
     @item = @user.items.build(item_params)
 
     if @item.save
-      # flash good
+      flash[:notice] = "Item was added to the list."
     else
-      #flash bad
+      flash[:alert] = "Item was not added, try again."
     end
-
     redirect_to @user
   end
 
+  def destroy
+    @item = current_user.items.find(params[:id])
+    if @item.destroy
+      flash[:notice] = "Item has been deleted."
+    else
+      flash[:alert] = "Item was not deleted, try again, "
+    end
+    respond_to do |format|
+      format.html {redirect_to [current_user, @item]}
+      format.js
+    end
+  end
 
   private
 
